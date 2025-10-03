@@ -6,8 +6,12 @@ import Footer from '@/components/Footer';
 import project1 from '@/assets/project-1.jpg';
 import project2 from '@/assets/project-2.jpg';
 import project3 from '@/assets/project-3.jpg';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Projects = () => {
+  const projectsSection = useScrollAnimation();
+  const ctaSection = useScrollAnimation();
+
   const projects = [
     {
       title: 'Campus Connect Platform',
@@ -97,9 +101,15 @@ const Projects = () => {
       {/* Projects Grid */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div ref={projectsSection.ref} className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-700 ${projectsSection.isVisible ? 'opacity-100' : 'opacity-0'}`}>
             {projects.map((project, index) => (
-              <Card key={index} className="bg-card border-border card-hover overflow-hidden flex flex-col">
+              <Card 
+                key={index} 
+                className="bg-card border-border card-hover overflow-hidden flex flex-col"
+                style={{
+                  animation: projectsSection.isVisible ? `fade-in-up 0.6s ease-out ${index * 0.1}s both` : 'none'
+                }}
+              >
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={project.image}
@@ -162,7 +172,10 @@ const Projects = () => {
       {/* CTA Section */}
       <section className="section-padding bg-card/30">
         <div className="container-custom">
-          <Card className="bg-gradient-to-br from-card to-secondary border-border text-center p-8 md:p-12">
+          <Card 
+            ref={ctaSection.ref} 
+            className={`bg-gradient-to-br from-card to-secondary border-border text-center p-8 md:p-12 transition-all duration-700 ${ctaSection.isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+          >
             <CardHeader>
               <CardTitle className="text-3xl md:text-4xl mb-4">
                 Have a Project Idea?

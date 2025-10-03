@@ -3,8 +3,14 @@ import { Target, Eye, Award, Users } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import aboutTeam from '@/assets/about-team.jpg';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const About = () => {
+  const missionVision = useScrollAnimation();
+  const historySection = useScrollAnimation();
+  const leadershipSection = useScrollAnimation();
+  const achievementsSection = useScrollAnimation();
+
   const leadership = [
     { name: 'Sarah Johnson', role: 'President', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah' },
     { name: 'Michael Chen', role: 'Vice President', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Michael' },
@@ -46,7 +52,7 @@ const About = () => {
       {/* Mission & Vision */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div ref={missionVision.ref} className={`grid md:grid-cols-2 gap-8 transition-all duration-700 ${missionVision.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <Card className="bg-card border-border card-hover">
               <CardHeader>
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
@@ -81,7 +87,7 @@ const About = () => {
       {/* History */}
       <section className="section-padding bg-card/30">
         <div className="container-custom">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div ref={historySection.ref} className={`grid md:grid-cols-2 gap-12 items-center transition-all duration-700 ${historySection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div>
               <img
                 src={aboutTeam}
@@ -122,7 +128,7 @@ const About = () => {
       {/* Leadership Team */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="text-center mb-12">
+          <div ref={leadershipSection.ref} className={`text-center mb-12 transition-all duration-700 ${leadershipSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-4">
               Leadership
             </div>
@@ -132,9 +138,15 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className={`grid md:grid-cols-3 gap-8 transition-all duration-700 ${leadershipSection.isVisible ? 'opacity-100' : 'opacity-0'}`}>
             {leadership.map((member, index) => (
-              <Card key={index} className="bg-card border-border card-hover text-center">
+              <Card 
+                key={index} 
+                className="bg-card border-border card-hover text-center"
+                style={{
+                  animation: leadershipSection.isVisible ? `fade-in-up 0.6s ease-out ${index * 0.1}s both` : 'none'
+                }}
+              >
                 <CardHeader>
                   <div className="mx-auto mb-4">
                     <img
@@ -155,7 +167,7 @@ const About = () => {
       {/* Achievements */}
       <section className="section-padding bg-card/30">
         <div className="container-custom">
-          <div className="text-center mb-12">
+          <div ref={achievementsSection.ref} className={`text-center mb-12 transition-all duration-700 ${achievementsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-4">
               Achievements
             </div>
@@ -165,9 +177,15 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className={`grid md:grid-cols-4 gap-6 transition-all duration-700 ${achievementsSection.isVisible ? 'opacity-100' : 'opacity-0'}`}>
             {achievements.map((achievement, index) => (
-              <Card key={index} className="bg-card border-border card-hover text-center">
+              <Card 
+                key={index} 
+                className="bg-card border-border card-hover text-center"
+                style={{
+                  animation: achievementsSection.isVisible ? `scale-in 0.5s ease-out ${index * 0.1}s both` : 'none'
+                }}
+              >
                 <CardHeader>
                   <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary to-cyan-400 flex items-center justify-center mb-4">
                     <achievement.icon className="h-8 w-8 text-background" />

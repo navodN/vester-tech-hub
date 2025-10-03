@@ -6,8 +6,12 @@ import Footer from '@/components/Footer';
 import event1 from '@/assets/event-1.jpg';
 import event2 from '@/assets/event-2.jpg';
 import event3 from '@/assets/event-3.jpg';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Events = () => {
+  const upcomingSection = useScrollAnimation();
+  const pastSection = useScrollAnimation();
+
   const upcomingEvents = [
     {
       title: 'Annual Hackathon 2025',
@@ -102,16 +106,22 @@ const Events = () => {
       {/* Upcoming Events */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="mb-12">
+          <div ref={upcomingSection.ref} className={`mb-12 transition-all duration-700 ${upcomingSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-3xl font-bold mb-4">Upcoming Events</h2>
             <p className="text-muted-foreground">
               Don't miss out on these exciting opportunities to learn and grow
             </p>
           </div>
 
-          <div className="grid md:grid-cols-1 gap-8">
+          <div className={`grid md:grid-cols-1 gap-8 transition-all duration-700 ${upcomingSection.isVisible ? 'opacity-100' : 'opacity-0'}`}>
             {upcomingEvents.map((event, index) => (
-              <Card key={index} className="bg-card border-border card-hover overflow-hidden">
+              <Card 
+                key={index} 
+                className="bg-card border-border card-hover overflow-hidden"
+                style={{
+                  animation: upcomingSection.isVisible ? `fade-in-up 0.6s ease-out ${index * 0.2}s both` : 'none'
+                }}
+              >
                 <div className="grid md:grid-cols-[300px_1fr] gap-0">
                   <div className="relative h-64 md:h-auto">
                     <img
@@ -162,16 +172,22 @@ const Events = () => {
       {/* Past Events */}
       <section className="section-padding bg-card/30">
         <div className="container-custom">
-          <div className="mb-12">
+          <div ref={pastSection.ref} className={`mb-12 transition-all duration-700 ${pastSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-3xl font-bold mb-4">Past Events</h2>
             <p className="text-muted-foreground">
               A look back at our successful events and workshops
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className={`grid md:grid-cols-3 gap-6 transition-all duration-700 ${pastSection.isVisible ? 'opacity-100' : 'opacity-0'}`}>
             {pastEvents.map((event, index) => (
-              <Card key={index} className="bg-card border-border card-hover overflow-hidden">
+              <Card 
+                key={index} 
+                className="bg-card border-border card-hover overflow-hidden"
+                style={{
+                  animation: pastSection.isVisible ? `scale-in 0.5s ease-out ${index * 0.1}s both` : 'none'
+                }}
+              >
                 <div className="relative h-48">
                   <img
                     src={event.image}

@@ -7,9 +7,12 @@ import { Mail, MapPin, Phone, Facebook, Twitter, Instagram, Linkedin, Github } f
 import { useToast } from '@/hooks/use-toast';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Contact = () => {
   const { toast } = useToast();
+  const contactSection = useScrollAnimation();
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -109,7 +112,7 @@ const Contact = () => {
       {/* Contact Section */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div ref={contactSection.ref} className={`grid md:grid-cols-2 gap-12 transition-all duration-700 ${contactSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {/* Contact Form */}
             <Card className="bg-card border-border">
               <CardHeader>
