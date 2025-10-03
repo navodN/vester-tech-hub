@@ -93,4 +93,106 @@ All colors MUST be HSL.
   .btn-glow {
     @apply relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-r before:from-primary before:to-cyan-400 before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-20;
   }
+
+  /* 3D Hero Scene styles */
+  .hero-3d-wrapper {
+    perspective: 1200px;
+    -webkit-perspective: 1200px;
+  }
+
+  .scene {
+    width: 640px;
+    height: 360px;
+    transform-style: preserve-3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .floating-cubes {
+    position: relative;
+    width: 420px;
+    height: 260px;
+    transform-style: preserve-3d;
+  }
+
+  .cube {
+    position: absolute;
+    transform-style: preserve-3d;
+    transform-origin: center;
+    animation: rotateAround 8s linear infinite;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.45));
+  }
+
+  .cube--large { left: 40px; top: 20px; width: 140px; height: 140px; animation-duration: 10s; }
+  .cube--med { left: 180px; top: 60px; width: 110px; height: 110px; animation-duration: 8s; animation-direction: reverse; }
+  .cube--small { left: 320px; top: 10px; width: 70px; height: 70px; animation-duration: 6s; }
+
+  .cube .face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.04);
+    box-sizing: border-box;
+    backdrop-filter: blur(4px);
+  }
+
+  .cube .face--front  { transform: translateZ(calc(var(--s) / 2)); }
+  .cube .face--back   { transform: rotateY(180deg) translateZ(calc(var(--s) / 2)); }
+  .cube .face--right  { transform: rotateY(90deg) translateZ(calc(var(--s) / 2)); }
+  .cube .face--left   { transform: rotateY(-90deg) translateZ(calc(var(--s) / 2)); }
+  .cube .face--top    { transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); }
+  .cube .face--bottom { transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); }
+
+  /* use CSS variables for cube size to compute translateZ properly */
+  .cube { --s: 100px; }
+  .cube--large { --s: 140px; }
+  .cube--med { --s: 110px; }
+  .cube--small { --s: 70px; }
+
+  @keyframes rotateAround {
+    0% { transform: rotateX(-10deg) rotateY(0deg) translateZ(0px); }
+    50% { transform: rotateX(10deg) rotateY(180deg) translateZ(40px); }
+    100% { transform: rotateX(-10deg) rotateY(360deg) translateZ(0px); }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .cube { animation: none !important; }
+  }
+  /* Animated WebGL hero canvas */
+  .hero-animated-wrapper {
+    overflow: hidden;
+  }
+  .hero-animated-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* hide canvas and use gradient background when user prefers reduced motion */
+    .hero-animated-canvas { display: none; }
+  }
+  .hero-model-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.95;
+  }
+  .hero-dark-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(2,6,10,0.55); /* darken scene for legibility */
+    z-index: 1;
+    pointer-events: none;
+  }
 }

@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Calendar, Rocket, Image as ImageIcon, ArrowRight, Code, Users, Lightbulb } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import heroBg from '@/assets/hero-bg.jpg';
+import HeroModel from '@/components/HeroModel';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Home = () => {
@@ -78,16 +78,8 @@ const Home = () => {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${heroBg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background"></div>
-        </div>
+  <HeroModel />
+  <div className="hero-dark-overlay" aria-hidden />
 
         <div className="container-custom relative z-10 pt-20">
           <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
