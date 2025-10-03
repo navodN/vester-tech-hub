@@ -10,9 +10,11 @@ import project2 from '@/assets/project-2.jpg';
 import project3 from '@/assets/project-3.jpg';
 import aboutTeam from '@/assets/about-team.jpg';
 import heroBg from '@/assets/hero-bg.jpg';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const gallerySection = useScrollAnimation();
 
   const photos = [
     { src: event2, title: 'Annual Hackathon 2024', category: 'Events' },
@@ -53,12 +55,15 @@ const Gallery = () => {
       {/* Photo Grid */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div ref={gallerySection.ref} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 transition-all duration-700 ${gallerySection.isVisible ? 'opacity-100' : 'opacity-0'}`}>
             {photos.map((photo, index) => (
               <div
                 key={index}
                 onClick={() => setSelectedImage(photo.src)}
                 className="relative group cursor-pointer overflow-hidden rounded-lg aspect-square"
+                style={{
+                  animation: gallerySection.isVisible ? `scale-in 0.5s ease-out ${index * 0.05}s both` : 'none'
+                }}
               >
                 <img
                   src={photo.src}

@@ -5,8 +5,13 @@ import { Calendar, Rocket, Image as ImageIcon, ArrowRight, Code, Users, Lightbul
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import heroBg from '@/assets/hero-bg.jpg';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Home = () => {
+  const aboutSection = useScrollAnimation();
+  const newsSection = useScrollAnimation();
+  const quickLinksSection = useScrollAnimation();
+
   const announcements = [
     {
       title: 'Annual Hackathon 2025',
@@ -124,7 +129,7 @@ const Home = () => {
       {/* About Preview Section */}
       <section className="section-padding bg-card/30">
         <div className="container-custom">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div ref={aboutSection.ref} className={`grid md:grid-cols-2 gap-12 items-center transition-all duration-700 ${aboutSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="space-y-6">
               <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium">
                 About VITS
@@ -156,7 +161,13 @@ const Home = () => {
             </div>
             <div className="grid grid-cols-1 gap-6">
               {features.map((feature, index) => (
-                <Card key={index} className="bg-card border-border card-hover">
+                <Card 
+                  key={index} 
+                  className="bg-card border-border card-hover"
+                  style={{
+                    animation: aboutSection.isVisible ? `slide-in-right 0.6s ease-out ${index * 0.15}s both` : 'none'
+                  }}
+                >
                   <CardHeader>
                     <div className="flex items-center space-x-4">
                       <div className="p-3 bg-primary/10 rounded-lg">
@@ -178,7 +189,7 @@ const Home = () => {
       {/* Latest News Section */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="text-center mb-12">
+          <div ref={newsSection.ref} className={`text-center mb-12 transition-all duration-700 ${newsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-4">
               Latest Updates
             </div>
@@ -188,9 +199,15 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className={`grid md:grid-cols-3 gap-6 transition-all duration-700 ${newsSection.isVisible ? 'opacity-100' : 'opacity-0'}`}>
             {announcements.map((announcement, index) => (
-              <Card key={index} className="bg-card border-border card-hover">
+              <Card 
+                key={index} 
+                className="bg-card border-border card-hover"
+                style={{
+                  animation: newsSection.isVisible ? `fade-in-up 0.6s ease-out ${index * 0.15}s both` : 'none'
+                }}
+              >
                 <CardHeader>
                   <div className="text-sm text-primary font-medium mb-2">{announcement.date}</div>
                   <CardTitle className="text-xl">{announcement.title}</CardTitle>
@@ -205,17 +222,22 @@ const Home = () => {
       {/* Quick Links Section */}
       <section className="section-padding bg-card/30">
         <div className="container-custom">
-          <div className="text-center mb-12">
+          <div ref={quickLinksSection.ref} className={`text-center mb-12 transition-all duration-700 ${quickLinksSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl font-bold mb-4">Explore VITS</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Discover our events, projects, and community highlights
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className={`grid md:grid-cols-3 gap-8 transition-all duration-700 ${quickLinksSection.isVisible ? 'opacity-100' : 'opacity-0'}`}>
             {quickLinks.map((link, index) => (
               <Link key={index} to={link.path}>
-                <Card className="bg-card border-border card-hover h-full group cursor-pointer">
+                <Card 
+                  className="bg-card border-border card-hover h-full group cursor-pointer"
+                  style={{
+                    animation: quickLinksSection.isVisible ? `scale-in 0.5s ease-out ${index * 0.15}s both` : 'none'
+                  }}
+                >
                   <CardHeader>
                     <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${link.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                       <link.icon className="h-8 w-8 text-white" />
