@@ -54,6 +54,19 @@ All colors MUST be HSL.
   }
 }
 
+/* NotFound playful styles */
+.animate-tilt { animation: tilt 6s ease-in-out infinite; }
+@keyframes tilt { 0%,100% { transform: rotate(-2deg) } 50% { transform: rotate(2deg) } }
+
+.confetti { position: absolute; width: 8px; height: 8px; border-radius: 2px; background: rgba(249,115,22,0.12); box-shadow: 0 0 8px rgba(189,94,43,0.06); animation: confetti-fall 3s linear infinite; border: 1px solid rgba(255,255,255,0.03); }
+.confetti::before, .confetti::after { content: ''; position: absolute; width: 8px; height: 8px; border-radius: 2px; }
+.confetti::before { background: rgba(96,165,250,0.10); left: -10px; top: 2px; animation: confetti-tilt 3.5s linear infinite; border: 1px solid rgba(255,255,255,0.03); }
+.confetti::after { background: rgba(52,211,153,0.08); left: 10px; top: -4px; animation: confetti-spin 2.8s linear infinite; border: 1px solid rgba(255,255,255,0.03); }
+
+@keyframes confetti-fall { 0% { transform: translateY(-10px) rotate(0deg); opacity: 1 } 100% { transform: translateY(120px) rotate(300deg); opacity: 0.2 } }
+@keyframes confetti-tilt { 0% { transform: rotate(0deg) } 50% { transform: rotate(45deg) } 100% { transform: rotate(0deg) } }
+@keyframes confetti-spin { 0% { transform: rotate(0deg) } 100% { transform: rotate(360deg) } }
+
 @layer base {
   * {
     @apply border-border;
