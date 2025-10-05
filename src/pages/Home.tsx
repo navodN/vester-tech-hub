@@ -84,7 +84,7 @@ const Home = () => {
         <div className="container-custom relative z-10 pt-20">
           <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
             <div className="inline-block px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-4">
-              Welcome to Vester's ICT Society
+              Welcome to The ICT Society of St.Sylvester's College
             </div>
             <h1 className="text-5xl md:text-7xl font-bold leading-tight">
               Empowering Students with{' '}

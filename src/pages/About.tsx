@@ -12,12 +12,13 @@ const About = () => {
   const achievementsSection = useScrollAnimation();
 
   const leadership = [
-    { name: 'Sarah Johnson', role: 'President', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah' },
-    { name: 'Michael Chen', role: 'Vice President', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Michael' },
-    { name: 'Emily Rodriguez', role: 'Secretary', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Emily' },
-    { name: 'David Kim', role: 'Treasurer', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=David' },
-    { name: 'Aisha Patel', role: 'Technical Lead', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Aisha' },
-    { name: 'James Wilson', role: 'Events Coordinator', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=James' },
+    { name: 'Maleesha Sandun', role: 'President', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah' },
+    { name: 'Gayansha Thameera', role: 'Secretary', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Emily' },
+    { name: 'Aashir Ahmed', role: 'Treasurer', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=David' },
+    { name: 'Navod Niroshana', role: 'Media Coordinator', image: 'https://drive.google.com/file/d/1iCSlDp8WqUorbLE4EwNTPocYKGogulBz/view?usp=sharing' },
+    { name: 'Januda Hettiarachchi', role: 'Vice President', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Michael' },
+    { name: 'Suranjeewa Perera', role: 'Chief Organizer', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=James' },
+    { name: 'Kavinda Dahanayake', role: 'Comittee Leader', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=James' },
   ];
 
   const achievements = [
