@@ -74,7 +74,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
   }
 
   html {
@@ -83,10 +83,22 @@ All colors MUST be HSL.
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-semibold tracking-tight;
+    font-family: 'Orbitron', 'Poppins', system-ui, -apple-system, sans-serif;
   }
 }
 
 @layer components {
+  /* Scroll snapping for immersive full-screen sections */
+  .snap-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: auto;
+    height: 100vh;
+  }
+  .snap-section {
+    scroll-snap-align: start;
+    min-height: 100vh;
+  }
+
   .section-padding {
     @apply py-16 md:py-24;
   }
@@ -207,5 +219,13 @@ All colors MUST be HSL.
     background: rgba(2,6,10,0.55); /* darken scene for legibility */
     z-index: 1;
     pointer-events: none;
+  }
+
+  /* Subtle cyan glow helpers */
+  .cyan-glow {
+    box-shadow: 0 0 24px hsl(189 94% 43% / 0.15);
+  }
+  .cyan-glow-strong {
+    box-shadow: 0 0 36px hsl(189 94% 43% / 0.25);
   }
 }

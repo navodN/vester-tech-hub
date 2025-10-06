@@ -30,14 +30,16 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-card/95 backdrop-blur-lg shadow-lg' : 'bg-transparent'
+        isScrolled
+          ? 'bg-black/60 backdrop-blur-md shadow-[0_0_24px_hsl(189_94%_43%/0.18)] border-b border-white/5'
+          : 'bg-black/30 backdrop-blur-sm'
       }`}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <div className="p-2 bg-gradient-to-br from-primary to-cyan-400 rounded-lg shadow-[0_0_16px_hsl(189_94%_43%/0.3)] group-hover:shadow-[0_0_24px_hsl(189_94%_43%/0.5)] transition-all duration-300">
+            <div className="p-2 bg-gradient-to-br from-primary to-cyan-400 rounded-lg shadow-[0_0_16px_hsl(189_94%_43%/0.25)] group-hover:shadow-[0_0_28px_hsl(189_94%_43%/0.35)] transition-all duration-300">
               <Code2 className="h-5 w-5 text-background" />
             </div>
             <span className="text-xl font-bold gradient-text">VITS</span>
@@ -52,7 +54,7 @@ const Navbar = () => {
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   isActive(link.path)
                     ? 'bg-primary/10 text-primary'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-white/5'
                 }`}
               >
                 {link.name}

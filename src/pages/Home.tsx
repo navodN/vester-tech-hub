@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Calendar, Rocket, Image as ImageIcon, ArrowRight, Code, Users, Lightbulb } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import HeroModel from '@/components/HeroModel';
+import HeroAnimated from '@/components/HeroAnimated';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Home = () => {
@@ -73,39 +73,32 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background snap-container">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-  <HeroModel />
-  <div className="hero-dark-overlay" aria-hidden />
+      <section id="home" className="relative snap-section flex items-center justify-center overflow-hidden">
+        <HeroAnimated />
+        <div className="hero-dark-overlay" aria-hidden />
 
         <div className="container-custom relative z-10 pt-20">
-          <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
-            <div className="inline-block px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-4">
-              Welcome to The ICT Society of St.Sylvester's College
+          <div className="max-w-5xl mx-auto text-center space-y-8 animate-fade-in">
+            <div className="inline-block px-4 py-2 bg-black/40 border border-white/10 rounded-full text-primary text-sm font-medium mb-4 cyan-glow">
+              VITS — Vesters IT Society, St. Sylvester’s College Kandy
             </div>
             <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-              Empowering Students with{' '}
-              <span className="gradient-text">Technology</span>
+              <span className="gradient-text">VITS</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Join our vibrant community of innovators, developers, and tech enthusiasts. 
-              Learn, build, and grow together.
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+              Empowering Future Innovators through Technology.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Link to="/contact">
-                <Button variant="hero" size="lg">
-                  Join Us Today
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
+              <a href="#about">
+                <Button variant="hero" size="lg" className="btn-glow">
+                  Explore Our Vision
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-              </Link>
-              <Link to="/about">
-                <Button variant="outline" size="lg">
-                  Learn More
-                </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -118,8 +111,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* About Preview Section */}
-      <section className="section-padding bg-card/30">
+      {/* About Section */}
+      <section id="about" className="snap-section section-padding bg-card/30">
         <div className="container-custom">
           <div ref={aboutSection.ref} className={`grid md:grid-cols-2 gap-12 items-center transition-all duration-700 ${aboutSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="space-y-6">
@@ -178,16 +171,16 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Latest News Section */}
-      <section className="section-padding">
+      {/* Events Section */}
+      <section id="events" className="snap-section section-padding">
         <div className="container-custom">
           <div ref={newsSection.ref} className={`text-center mb-12 transition-all duration-700 ${newsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-4">
-              Latest Updates
+              Events
             </div>
             <h2 className="text-4xl font-bold mb-4">What's Happening</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Stay updated with our latest events, workshops, and society announcements
+              Stay updated with our latest workshops, talks, and hackathons
             </p>
           </div>
 
@@ -211,8 +204,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Quick Links Section */}
-      <section className="section-padding bg-card/30">
+      {/* Explore Section */}
+      <section id="explore" className="snap-section section-padding bg-card/30">
         <div className="container-custom">
           <div ref={quickLinksSection.ref} className={`text-center mb-12 transition-all duration-700 ${quickLinksSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl font-bold mb-4">Explore VITS</h2>
