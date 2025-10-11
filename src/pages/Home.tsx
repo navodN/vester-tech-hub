@@ -5,6 +5,7 @@ import { Calendar, Rocket, Image as ImageIcon, ArrowRight, Code, Users, Lightbul
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import HeroModel from '@/components/HeroModel';
+import FaultyTerminal from '@/components/FaultyTerminal';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Home = () => {
@@ -78,43 +79,67 @@ const Home = () => {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-  <HeroModel />
-  <div className="hero-dark-overlay" aria-hidden />
 
-        <div className="container-custom relative z-10 pt-20">
-          <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
-            <div className="inline-block px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-4">
-              Welcome to The ICT Society of St.Sylvester's College
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-              Empowering Students with{' '}
-              <span className="gradient-text">Technology</span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Join our vibrant community of innovators, developers, and tech enthusiasts. 
-              Learn, build, and grow together.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Link to="/contact">
-                <Button variant="hero" size="lg">
-                  Join Us Today
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link to="/about">
-                <Button variant="outline" size="lg">
-                  Learn More
-                </Button>
-              </Link>
+        <div style={{ width: '100%', height: '100vh', position: 'absolute', zIndex: 0, top: 0, left: 0, }}>
+
+          <div className="container-custom relative z-10 pt-20">
+            <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
+              <div className="inline-block px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-4">
+                Welcome
+              </div>
+              <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+                ICT Society of{' '}
+                <span className="gradient-text">St.Sylvester's College</span>
+              </h1>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Join our vibrant community of innovators, developers, and tech enthusiasts.
+                Learn, build, and grow together.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                <Link to="/contact">
+                  <Button variant="hero" size="lg">
+                    Join Us Today
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link to="/about">
+                  <Button variant="outline" size="lg">
+                    Learn More
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center">
-            <div className="w-1.5 h-3 bg-primary rounded-full mt-2"></div>
+          <FaultyTerminal
+            scale={2.5}
+            gridMul={[2, 1]}
+            digitSize={1.2}
+            timeScale={1}
+            pause={false}
+            scanlineIntensity={1}
+            glitchAmount={1}
+            flickerAmount={1}
+            noiseAmp={1}
+            chromaticAberration={0}
+            dither={0}
+            curvature={0}
+            tint="#00ffffff"
+            mouseReact={true}
+            mouseStrength={0.5}
+            pageLoadAnimation={true}
+            brightness={1}
+          />
+
+          <div className="" aria-hidden />
+
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div className="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center">
+              <div className="w-1.5 h-3 bg-primary rounded-full mt-2"></div>
+            </div>
           </div>
+
         </div>
       </section>
 
@@ -130,8 +155,8 @@ const Home = () => {
                 Building Tomorrow's <span className="gradient-text">Tech Leaders</span>
               </h2>
               <p className="text-lg text-muted-foreground">
-                VITS is more than just a society – it's a movement. We're dedicated to fostering 
-                technological innovation, providing hands-on learning experiences, and creating 
+                VITS is more than just a society – it's a movement. We're dedicated to fostering
+                technological innovation, providing hands-on learning experiences, and creating
                 opportunities for students to excel in the digital age.
               </p>
               <div className="grid grid-cols-2 gap-4 pt-4">
@@ -153,8 +178,8 @@ const Home = () => {
             </div>
             <div className="grid grid-cols-1 gap-6">
               {features.map((feature, index) => (
-                <Card 
-                  key={index} 
+                <Card
+                  key={index}
                   className="bg-card border-border card-hover"
                   style={{
                     animation: aboutSection.isVisible ? `slide-in-right 0.6s ease-out ${index * 0.15}s both` : 'none'
@@ -193,8 +218,8 @@ const Home = () => {
 
           <div className={`grid md:grid-cols-3 gap-6 transition-all duration-700 ${newsSection.isVisible ? 'opacity-100' : 'opacity-0'}`}>
             {announcements.map((announcement, index) => (
-              <Card 
-                key={index} 
+              <Card
+                key={index}
                 className="bg-card border-border card-hover"
                 style={{
                   animation: newsSection.isVisible ? `fade-in-up 0.6s ease-out ${index * 0.15}s both` : 'none'
@@ -224,7 +249,7 @@ const Home = () => {
           <div className={`grid md:grid-cols-3 gap-8 transition-all duration-700 ${quickLinksSection.isVisible ? 'opacity-100' : 'opacity-0'}`}>
             {quickLinks.map((link, index) => (
               <Link key={index} to={link.path}>
-                <Card 
+                <Card
                   className="bg-card border-border card-hover h-full group cursor-pointer"
                   style={{
                     animation: quickLinksSection.isVisible ? `scale-in 0.5s ease-out ${index * 0.15}s both` : 'none'

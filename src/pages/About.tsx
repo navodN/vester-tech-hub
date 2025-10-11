@@ -18,7 +18,7 @@ const About = () => {
     { name: 'Navod Niroshana', role: 'Media Coordinator', image: 'https://drive.google.com/file/d/1iCSlDp8WqUorbLE4EwNTPocYKGogulBz/view?usp=sharing' },
     { name: 'Januda Hettiarachchi', role: 'Vice President', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Michael' },
     { name: 'Suranjeewa Perera', role: 'Chief Organizer', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=James' },
-    { name: 'Kavinda Dahanayake', role: 'Comittee Leader', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=James' },
+    { name: 'Kavinda Dahanayake', role: 'Committee Leader', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=James' },
   ];
 
   const achievements = [
